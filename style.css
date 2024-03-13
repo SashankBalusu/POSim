@@ -1,12 +1,20 @@
+*{
+    font-family: "madimi one";
+    padding: 0;
+    margin: 0;
+}
 #full{
     display: grid;
     grid-template-areas: "area1 area2";
-    grid-template-columns: "20vw 80vw";
-    grid-template-rows: "100vvh 100vh";
+    grid-template-columns: 20vw 80vw;
 }
 #preset {
+    height: 100vh;
     display: grid;
     grid-area: area1;
+    background: #6474E5;
+    padding-left: 40px;
+    padding-top: 20px;
 }
 #main {
     display: grid;
@@ -20,10 +28,17 @@
     border-style: solid;
     border-color: black;
     border-width: 5px;
+    text-align: center;
+    line-height: 25vh;
+    font-size: 20px;
 }
 #move {
     display: none;
     position: absolute;
     bottom: 0;
     right: 0;
+    background: #4ea1d3;
+    border-radius: 8px;
+    height: 10vh;
+    width: 5vw;
 }

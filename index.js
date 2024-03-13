@@ -72,7 +72,7 @@ function run(){
         let randPerson = Math.floor(Math.random() * (16 - 1) + 1)
         console.log(randPerson)
         let person = document.getElementById(randPerson)
-        person.style.background = "blue"
+        person.style.background = "#F4A4A4"
     }
     let recency = document.getElementsByClassName("recency")
     let seating = document.getElementsByClassName("personSquare")
@@ -80,8 +80,10 @@ function run(){
     
     for (let i = 0; i < recency.length;i++){
         for (let j= 0; j < seating.length; j++){
-            if (recency[i].textContent == seating[j].textContent && document.getElementById(j+1).style.background == "blue"){
+            console.log(document.getElementById(j+1).style.background)
+            if (recency[i].textContent == seating[j].textContent && document.getElementById(j+1).style.background == "rgb(244, 164, 164)"){
                 correctOrder.push(recency[i].textContent)
+                console.log("hiii")
                 break
             }
         }
@@ -101,8 +103,9 @@ function run(){
                 console.log(correctOrder)
                 if (correctOrder.length == 0){
                     console.log("next round!")
+                    button.setAttribute("style", "display:block")
+
                 }
-                button.setAttribute("style", "display:block")
             }
         })
     }

@@ -1,0 +1,29 @@
+#full{
+    display: grid;
+    grid-template-areas: "area1 area2";
+    grid-template-columns: "20vw 80vw";
+    grid-template-rows: "100vvh 100vh";
+}
+#preset {
+    display: grid;
+    grid-area: area1;
+}
+#main {
+    display: grid;
+    grid-area: area2;
+    grid-template-areas: "1 2 3 4" "1 2 3 4" "1 2 3 4" "1 2 3 4";
+    width: 100%;
+    height: 100vh;
+
+}
+.personSquare {
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+}
+#move {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

@@ -34,7 +34,7 @@ button.addEventListener("click", function(){
     button.setAttribute("style", "display:none")
     run()
     finish ++
-    if (finish == 1){
+    if (finish == 3){
         const dbRef = ref(getDatabase());
         let dataArr = []
         let labelArr = []
@@ -52,73 +52,75 @@ button.addEventListener("click", function(){
             }
           }).catch((error) => {
             console.error(error);
+          }).then(() => {
+            var ctx = document.getElementById('myChart').getContext("2d");
+
+            var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+            gradientStroke.addColorStop(0, '#80b6f4');
+            gradientStroke.addColorStop(1, '#f49080');
+    
+            var gradientFill = ctx.createLinearGradient(500, 0, 100, 0);
+            gradientFill.addColorStop(0, "rgba(128, 182, 244, 0.6)");
+            gradientFill.addColorStop(1, "rgba(244, 144, 128, 0.6)");
+            removeAllChildNodes(document.getElementById('myChart'))
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labelArr,
+                    datasets: [{
+                        label: "Data",
+                        borderColor: gradientStroke,
+                        pointBorderColor: gradientStroke,
+                        pointBackgroundColor: gradientStroke,
+                    pointHoverBackgroundColor: gradientStroke,
+                        pointHoverBorderColor: gradientStroke,
+                        pointBorderWidth: 10,
+                        pointHoverRadius: 10,
+                        pointHoverBorderWidth: 1,
+                        pointRadius: 3,
+                        fill: true,
+                        backgroundColor: gradientFill,
+                        borderWidth: 4,
+                        data: dataArr
+                    }]
+                },
+                options: {
+                    legend: {
+                        position: "bottom"
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "rgba(0,0,0,0.5)",
+                                fontStyle: "bold",
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                padding: 20
+                            },
+                            gridLines: {
+                                drawTicks: false,
+                                display: false
+                            }
+    
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                padding: 20,
+                                fontColor: "rgba(0,0,0,0.5)",
+                                fontStyle: "bold"
+                            }
+                        }]
+                    }
+                }
+            });
           });
         
         clearInterval(Interval);
         let time = document.getElementById("seconds").textContent
-        var ctx = document.getElementById('myChart').getContext("2d");
-
-        var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-        gradientStroke.addColorStop(0, '#80b6f4');
-        gradientStroke.addColorStop(1, '#f49080');
-
-        var gradientFill = ctx.createLinearGradient(500, 0, 100, 0);
-        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0.6)");
-        gradientFill.addColorStop(1, "rgba(244, 144, 128, 0.6)");
-        removeAllChildNodes(document.getElementById('myChart'))
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labelArr,
-                datasets: [{
-                    label: "Data",
-                    borderColor: gradientStroke,
-                    pointBorderColor: gradientStroke,
-                    pointBackgroundColor: gradientStroke,
-                pointHoverBackgroundColor: gradientStroke,
-                    pointHoverBorderColor: gradientStroke,
-                    pointBorderWidth: 10,
-                    pointHoverRadius: 10,
-                    pointHoverBorderWidth: 1,
-                    pointRadius: 3,
-                    fill: true,
-                    backgroundColor: gradientFill,
-                    borderWidth: 4,
-                    data: dataArr
-                }]
-            },
-            options: {
-                legend: {
-                    position: "bottom"
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: "rgba(0,0,0,0.5)",
-                            fontStyle: "bold",
-                            beginAtZero: true,
-                            maxTicksLimit: 5,
-                            padding: 20
-                        },
-                        gridLines: {
-                            drawTicks: false,
-                            display: false
-                        }
-
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            zeroLineColor: "transparent"
-                        },
-                        ticks: {
-                            padding: 20,
-                            fontColor: "rgba(0,0,0,0.5)",
-                            fontStyle: "bold"
-                        }
-                    }]
-                }
-            }
-        });
+        
         const db = getDatabase();
             push(ref(db, 'users/' + userName), {
                 time: time

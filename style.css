@@ -3,6 +3,63 @@
     padding: 0;
     margin: 0;
 }
+#login-page {
+    background: #F8C8C6;
+    height: 100vh;
+    width: 100vw;
+}
+#loginBut {
+    width: 20vw;
+    height: 15vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #4ea1d3;
+}
+#game-finished {
+    height: 100vh;
+    width: 100vw;
+    background: #F8C8C6;
+}
+p {
+    text-align: center;
+}
+#finishTime {
+    font-size: 20px;
+}
+#finishedHeader {
+    font-size: 20px;
+}
+#playAgain {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 10vw;
+    height: 10vh;
+    margin: 90vh auto;
+    background-color: #6474E5;
+}
+#start {
+    display: none;
+    width: 20vw;
+    height: 15vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #4ea1d3;
+}
+#post-login {
+    display: none;
+    
+}
 #full{
     display: grid;
     grid-template-areas: "area1 area2";
@@ -53,10 +110,7 @@
     border-color: black;
     border-style: solid;
     border-width: 3px;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    
     width: 10vw;
     text-align: center;
     background: #F8C8C6;
@@ -107,3 +161,17 @@
         background-color: "#F8C8C6";
     }
 }
+.wrapper{
+    width:60%;
+    height: 60vh;
+    display:block;
+    margin:0 auto;
+    padding: 60px 50px;
+    background:#F8C8C6;
+    border-radius:4px;
+  }
+  
+  canvas{
+    background:#F8C8C6;
+    height: 60vh;
+  }

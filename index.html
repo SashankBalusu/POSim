@@ -11,15 +11,33 @@
 
 </head>
 <body>
-    <div id = "full">
-        <div id = preset>
+    <div id = "login-page">
+        <button id = "loginBut">
+            Sign in With Google
+        </button>
+        <button id = "start">Start</button>
 
-        </div>
-        <div id = "main"></div>
     </div>
-    <p id = "timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
-    <button id = "move">Next</button>
+    <div id = "post-login">
+        <div id = "full">
+            <div id = preset>
     
-    <script src = "index.js"></script>
+            </div>
+            <div id = "main"></div>
+        </div>
+        <p id = "timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <button id = "move">Next</button>
+    </div>
+    <div id = "game-finished">
+        <p id = "finishedHeader" >Finished in: </p>
+        <p id = "finishTime"></p>
+        <button id = "playAgain">Play Again</button>
+        <div class="wrapper">
+            <canvas id="myChart"></canvas>
+            </div>
+    </div>
+    
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type = "module" src = "index.js"></script>
 </body>
 </html>

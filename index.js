@@ -28,8 +28,42 @@ button.addEventListener("click", function(){
 })
 const main = document.getElementById("main")
 const preset = document.getElementById("preset")
+const timer = document.getElementById("timer")
+let names = ["Balusu", "Mittal", "Srinivasan", "Rajasekar", "Tyagali", "Wang", "Lu", "Belur", "Muthusamy", "Vemu", "Woodhead", "Mardikar", "Bhutani", "Lee", "Huang", "Park"]
+var seconds = 0; 
+var tens = 0; 
+var appendTens = document.getElementById("tens")
+var appendSeconds = document.getElementById("seconds")
 
-let names = ["Balusu", "Mittal", "Srinivasan", "Rajasekar", "Tyagali", "Wang", "Lu", "Belur", "Muthusamy", "Vemu", "Woodhead", "Cruz", "Bhutani", "Lee", "Huang", "Park"]
+var Interval ;
+
+clearInterval(Interval);
+Interval = setInterval(startTimer, 10);
+function startTimer () {
+  tens++; 
+  
+  if(tens <= 9){
+    appendTens.innerHTML = "0" + tens;
+  }
+  
+  if (tens > 9){
+    appendTens.innerHTML = tens;
+    
+  } 
+  
+  if (tens > 99) {
+    console.log("seconds");
+    seconds++;
+    appendSeconds.innerHTML = "0" + seconds;
+    tens = 0;
+    appendTens.innerHTML = "0" + 0;
+  }
+  
+  if (seconds > 9){
+    appendSeconds.innerHTML = seconds;
+  }
+
+}
 function run(){
     let row = 1
     let col = 0
@@ -95,9 +129,25 @@ function run(){
     for (let i = 0; i < seating.length;i++){
         seating[i].addEventListener("click", function(){
             if (seating[i].textContent != correctOrder[0]){
+                seating[i].style.animation = 'none';
+                seating[i].offsetHeight; /* trigger reflow */
+                seating[i].style.animation = null; 
+                timer.style.animation = 'none';
+                timer.offsetHeight; /* trigger reflow */
+                timer.style.animation = null; 
                 console.log("incorrect")
+                seconds+=5
+                seating[i].style.animation = "changeBackgroundColor 1s"
+                timer.style.animation = "changeBackgroundColor2 1s"
+                
             }
             else{
+                seating[i].style.animation = 'none';
+                seating[i].offsetHeight; /* trigger reflow */
+                seating[i].style.animation = null; 
+                timer.style.animation = 'none';
+                timer.offsetHeight; /* trigger reflow */
+                timer.style.animation = null; 
                 correctOrder.shift()
                 seating[i].style.background = "white"
                 console.log(correctOrder)
@@ -106,6 +156,8 @@ function run(){
                     button.setAttribute("style", "display:block")
 
                 }
+                seating[i].style.animation = "changeBackgroundColor3 0.6s"
+                timer.style.animation = "changeBackgroundColor4 0.6s"
             }
         })
     }

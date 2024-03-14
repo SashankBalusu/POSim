@@ -7,15 +7,16 @@
     display: grid;
     grid-template-areas: "area1 area2";
     grid-template-columns: 20vw 80vw;
+    grid-template-rows: 100vh;
 }
 #preset {
-    height: 100vh;
     display: grid;
     grid-area: area1;
     background: #6474E5;
-    padding-left: 40px;
+    padding-left: 1em;
     padding-top: 20px;
     overflow-x: scroll;
+    overflow-y: scroll;
 }
 #main {
     display: grid;
@@ -46,4 +47,63 @@
     border-radius: 8px;
     height: 10vh;
     width: 5vw;
+}
+#timer{
+    position: absolute;
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 10vw;
+    text-align: center;
+    background: #F8C8C6;
+}
+@keyframes changeBackgroundColor {
+    0% {
+        background-color: rgb(244, 164, 164);
+    }
+    50% {
+        background-color: rgb(239 101 101);;
+    }
+    100% {
+        background-color: rgb(244, 164, 164);
+    }
+}
+
+@keyframes changeBackgroundColor2 {
+    0% {
+        background-color: "#F8C8C6";
+    }
+    50% {
+        background-color: rgb(239 101 101);;
+    }
+    100% {
+        background-color: "#F8C8C6";
+    }
+}
+
+@keyframes changeBackgroundColor3 {
+    0% {
+        background-color: rgb(244, 164, 164);
+    }
+    50% {
+        background-color: rgb(136, 231, 167);;
+    }
+    100% {
+        background-color: white;
+    }
+}
+@keyframes changeBackgroundColor4 {
+    0% {
+        background-color: "#F8C8C6";
+    }
+    50% {
+        background-color: rgb(136, 231, 167);;
+    }
+    100% {
+        background-color: "#F8C8C6";
+    }
 }

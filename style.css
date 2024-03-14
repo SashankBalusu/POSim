@@ -110,8 +110,11 @@ p {
     border-color: black;
     border-style: solid;
     border-width: 3px;
-    
+    top: 0;
+    left: 0;
+    right: 0;
     width: 10vw;
+    margin: 0 auto;
     text-align: center;
     background: #F8C8C6;
 }

@@ -203,6 +203,7 @@ function startTimer () {
 
 }
 function run(){
+    clearInterval(Interval);
     let row = 1
     let col = 0
     removeAllChildNodes(main)
@@ -236,69 +237,74 @@ function run(){
         p.classList.add("recency")
         preset.appendChild(p)
     }
-    
-    
-    let numPeople = Math.floor(Math.random() * (11 - 4) + 4)
-    console.log(numPeople)
-    for (let i = 1; i <= numPeople; i++){
-        let randPerson = Math.floor(Math.random() * (16 - 1) + 1)
-        console.log(randPerson)
-        let person = document.getElementById(randPerson)
-        person.style.background = "#F4A4A4"
-    }
-    let recency = document.getElementsByClassName("recency")
-    let seating = document.getElementsByClassName("personSquare")
-    let correctOrder = []
-    
-    for (let i = 0; i < recency.length;i++){
-        for (let j= 0; j < seating.length; j++){
-            console.log(document.getElementById(j+1).style.background)
-            if (recency[i].textContent == seating[j].textContent && document.getElementById(j+1).style.background == "rgb(244, 164, 164)"){
-                correctOrder.push(recency[i].textContent)
-                console.log("hiii")
+    setTimeout(() => {
+        Interval = setInterval(startTimer, 10);
+
+        
+        
+        let numPeople = Math.floor(Math.random() * (11 - 4) + 4)
+        console.log(numPeople)
+        for (let i = 1; i <= numPeople; i++){
+            let randPerson = Math.floor(Math.random() * (16 - 1) + 1)
+            console.log(randPerson)
+            let person = document.getElementById(randPerson)
+            person.style.background = "#F4A4A4"
+        }
+        let recency = document.getElementsByClassName("recency")
+        let seating = document.getElementsByClassName("personSquare")
+        let correctOrder = []
+        
+        for (let i = 0; i < recency.length;i++){
+            for (let j= 0; j < seating.length; j++){
+                console.log(document.getElementById(j+1).style.background)
+                if (recency[i].textContent == seating[j].textContent && document.getElementById(j+1).style.background == "rgb(244, 164, 164)"){
+                    correctOrder.push(recency[i].textContent)
+                    console.log("hiii")
+                    break
+                }
+            }
+            if (correctOrder.length == 2){
                 break
             }
         }
-        if (correctOrder.length == 2){
-            break
-        }
-    }
-    console.log(correctOrder)
-    for (let i = 0; i < seating.length;i++){
-        seating[i].addEventListener("click", function(){
-            if (seating[i].textContent != correctOrder[0]){
-                seating[i].style.animation = 'none';
-                seating[i].offsetHeight; /* trigger reflow */
-                seating[i].style.animation = null; 
-                timer.style.animation = 'none';
-                timer.offsetHeight; /* trigger reflow */
-                timer.style.animation = null; 
-                console.log("incorrect")
-                seconds+=5
-                seating[i].style.animation = "changeBackgroundColor 1s"
-                timer.style.animation = "changeBackgroundColor2 1s"
-                
-            }
-            else{
-                seating[i].style.animation = 'none';
-                seating[i].offsetHeight; /* trigger reflow */
-                seating[i].style.animation = null; 
-                timer.style.animation = 'none';
-                timer.offsetHeight; /* trigger reflow */
-                timer.style.animation = null; 
-                correctOrder.shift()
-                seating[i].style.background = "white"
-                console.log(correctOrder)
-                if (correctOrder.length == 0){
-                    console.log("next round!")
-                    button.setAttribute("style", "display:block")
-
+        console.log(correctOrder)
+        for (let i = 0; i < seating.length;i++){
+            seating[i].addEventListener("click", function(){
+                if (seating[i].textContent != correctOrder[0]){
+                    seating[i].style.animation = 'none';
+                    seating[i].offsetHeight; /* trigger reflow */
+                    seating[i].style.animation = null; 
+                    timer.style.animation = 'none';
+                    timer.offsetHeight; /* trigger reflow */
+                    timer.style.animation = null; 
+                    console.log("incorrect")
+                    seconds+=5
+                    seating[i].style.animation = "changeBackgroundColor 1s"
+                    timer.style.animation = "changeBackgroundColor2 1s"
+                    
                 }
-                seating[i].style.animation = "changeBackgroundColor3 0.6s"
-                timer.style.animation = "changeBackgroundColor4 0.6s"
-            }
-        })
-    }
+                else{
+                    seating[i].style.animation = 'none';
+                    seating[i].offsetHeight; /* trigger reflow */
+                    seating[i].style.animation = null; 
+                    timer.style.animation = 'none';
+                    timer.offsetHeight; /* trigger reflow */
+                    timer.style.animation = null; 
+                    correctOrder.shift()
+                    seating[i].style.background = "white"
+                    console.log(correctOrder)
+                    if (correctOrder.length == 0){
+                        console.log("next round!")
+                        button.setAttribute("style", "display:block")
+
+                    }
+                    seating[i].style.animation = "changeBackgroundColor3 0.6s"
+                    timer.style.animation = "changeBackgroundColor4 0.6s"
+                }
+            })
+        }
+    }, 3000);
+    
 }
 loginBut.addEventListener("click", function(){
     const provider = new GoogleAuthProvider();
@@ -325,7 +331,6 @@ loginBut.addEventListener("click", function(){
             loginPage.style.display = "none"
             postLogin.style.display = "block"
             start.style.display = "none"
-            Interval = setInterval(startTimer, 10);
             run()
         })
         

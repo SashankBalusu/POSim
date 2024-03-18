@@ -31,8 +31,14 @@ function removeAllChildNodes(parent) {
 //set up
 const button = document.getElementById("move")
 button.addEventListener("click", function(){
+    clearInterval(Interval);
+        let time = document.getElementById("seconds").textContent
+        
+        const db = getDatabase();
+            push(ref(db, 'users/' + userName), {
+                time: time
+            });
     button.setAttribute("style", "display:none")
-    run()
     finish ++
     if (finish == 3){
         const dbRef = ref(getDatabase());
@@ -118,29 +124,14 @@ button.addEventListener("click", function(){
             });
           });
         
-        clearInterval(Interval);
-        let time = document.getElementById("seconds").textContent
-        
-        const db = getDatabase();
-            push(ref(db, 'users/' + userName), {
-                time: time
-            });
             document.getElementById("post-login").style.display = "none"
             document.getElementById("game-finished").style.display = "block"
             document.getElementById("finishTime").textContent = time + " seconds"
             const playAgain = document.getElementById("playAgain")
             playAgain.style.display = "block"
-            playAgain.addEventListener("click", function(){
-                finish = 0
-                document.getElementById("game-finished").style.display = "none"
-                document.getElementById("post-login").style.display = "block"
-                tens = "00";
-                seconds = "00";
-                document.getElementById("tens").innerHTML = tens;
-                document.getElementById("seconds").innerHTML = seconds;
-                Interval = setInterval(startTimer, 10);
-                run()
-            })
+    }
+    else {
+        run()
     }
     
 })
@@ -175,6 +166,17 @@ var appendSeconds = document.getElementById("seconds")
 let finish = 0
 var Interval ;
 let userName
+const playAgain = document.getElementById("playAgain")
+playAgain.addEventListener("click", function(){
+    finish = 0
+    document.getElementById("game-finished").style.display = "none"
+    document.getElementById("post-login").style.display = "block"
+    tens = "00";
+    seconds = "00";
+    document.getElementById("tens").innerHTML = tens;
+    document.getElementById("seconds").innerHTML = seconds;
+    run()
+})
 
 clearInterval(Interval);
 function startTimer () {
@@ -203,6 +205,7 @@ function startTimer () {
 
 }
 function run(){
+    console.log("im running im running")
     clearInterval(Interval);
     let row = 1
     let col = 0

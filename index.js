@@ -34,13 +34,14 @@ button.addEventListener("click", function(){
     clearInterval(Interval);
         let time = document.getElementById("seconds").textContent
         
-        const db = getDatabase();
-            push(ref(db, 'users/' + userName), {
-                time: time
-            });
+       
     button.setAttribute("style", "display:none")
     finish ++
     if (finish == 3){
+        const db = getDatabase();
+        push(ref(db, 'users/' + userName), {
+            time: time
+        });
         const dbRef = ref(getDatabase());
         let dataArr = []
         let labelArr = []

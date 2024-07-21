@@ -159,6 +159,8 @@ const postLogin = document.getElementById("post-login")
 const main = document.getElementById("main")
 const preset = document.getElementById("preset")
 const timer = document.getElementById("timer")
+document.getElementById("game-finished").style.display = "none"
+
 let names = ["Balusu", "Mittal", "Srinivasan", "Rajasekar", "Tyagali", "Wang", "Lu", "Belur", "Muthusamy", "Vemu", "Woodhead", "Mardikar", "Bhutani", "Lee", "Huang", "Park"]
 var seconds = 0; 
 var tens = 0; 

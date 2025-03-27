@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSim - Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css" /> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"></script>
+</head>
+<body>
+    <!-- Authentication Check Div -->
+    <div id="auth-check" style="display: none; text-align: center; padding: 20px;">
+        <h2>Authentication Required</h2>
+        <p>Please sign in to access this page.</p>
+        <button id="redirectLogin">Go to Login</button>
+    </div>
+
+    <!-- Game Content -->
+    <div id="game-content" style="display: none;">
+        <div id="login-page">
+            <button id="start">Start</button>
+        </div>
+        <div id="post-login">
+            <div id="full">
+                <div id="preset"></div>
+                <div id="main"></div>
+            </div>
+            <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
+            <button id="move">Next</button>
+        </div>
+        <div id="game-finished">
+            <p id="finishedHeader">Finished in: </p>
+            <p id="finishTime"></p>
+            <button id="playAgain">Play Again</button>
+            <div class="wrapper">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type="module" src="index.js"></script>
+</body>
+</html>

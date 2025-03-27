@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>POSim - Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"></script>
+
+  <style>
+    :root {
+      --color-bg: #0B0C10;
+      --color-primary: #66FCF1;
+      --color-secondary: #45A29E;
+      --color-card-bg: #1F2833;
+      --color-text: #C5C6C7;
+      --color-heading: #66FCF1;
+      --color-accent: #45A29E;
+      --color-toggle-active: #66FCF1;
+    }
+    
+    /* Reset and basic styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "fira code"
+    }
+    
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+    }
+    
+    /* Container for aligning header and content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Pill-Style Header */
+    header {
+      background-color: var(--color-card-bg);
+      border-radius: 9999px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      margin: 2rem 0;
+    }
+    
+    header h1 {
+      color: var(--color-primary);
+      font-size: 1.5rem;
+    }
+    
+    .button {
+      background-color: var(--color-secondary);
+      color: var(--color-text);
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+    
+    .button:hover {
+      background-color: var(--color-primary);
+      color: black;
+    }
+    
+    /* Main section with two columns */
+    .main-section {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 2rem;
+    }
+    
+    /* Left Column: two stacked cards */
+    .left-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      height: 80vh;
+    }
+    
+    .card {
+      background-color: var(--color-card-bg);
+      border-radius: 40px;
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .card h2 {
+      color: var(--color-heading);
+      margin-bottom: 0.5rem;
+      font-size: 1.75rem;
+    }
+    
+    .card p {
+      margin-bottom: 1rem;
+    }
+    
+     /* Right Column: Leaderboard */
+     .right-column {
+      flex: 1;
+      height: 80vh;
+      background-color: var(--color-card-bg);
+      border-radius: 20px;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Toggle Buttons */
+    .leaderboard-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    
+    .toggle {
+      background-color: var(--color-secondary);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: black;
+      transition: background-color 0.2s ease;
+    }
+    
+    .toggle.active {
+      background-color: var(--color-toggle-active);
+      color: black;
+    }
+    
+    /* Leaderboard List */
+    .leaderboard-list {
+      flex: 1;
+    }
+    
+    .leaderboard-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .leaderboard-list li {
+      background: linear-gradient(90deg, rgba(69,162,158,0.2), rgba(102,252,241,0.2));
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .leaderboard-list li span.rank {
+      font-weight: bold;
+      color: var(--color-heading);
+      width: 30px;
+    }
+    
+    .leaderboard-list li span.name {
+      flex: 1;
+      margin-left: 10px;
+    }
+    
+    .leaderboard-list li span.value {
+      font-family: monospace;
+      font-weight: bold;
+      color: var(--color-accent);
+    }
+    
+    /* Responsive: stack columns on narrow screens */
+    @media (max-width: 768px) {
+      .main-section {
+        flex-direction: column;
+      }
+      .right-column {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Pill-Style Header -->
+    <header>
+      <h1>POSim</h1>
+      <button id="loginButton" class="button">Sign in with Google</button>
+    </header>
+    
+    <!-- Main Section -->
+    <section class="main-section">
+      <!-- Left Column with Two Cards -->
+      <div class="left-column">
+        <!-- Card 1: Introduction -->
+        <div class="card">
+          <h2>I. Am. Speed.</h2>
+          <p>
+            Train to be a faster PO without the hassle of getting 16 people together. Or just try to top the leaderboard when that works. 
+          </p>
+          <button id="loginButton2" class="button">Sign in with Google</button>
+        </div>
+        <!-- Card 2: Explanation -->
+        <div class="card">
+          <h2>Instructions</h2>
+          <p>
+            1. Login with Google
+          </p>
+          <p>
+            2. Analyze the recency chart on the left side of the screen
+          </p>
+          <p>
+            3. Pick the first two people shown as standing up on the seating chart based on the recency order
+          </p>
+          <p>
+            4. Round ends after 3 cycles. See your growth over time. 
+          </p>
+        </div>
+      </div>
+      
+      <!-- Right Column: Leaderboard with Toggle -->
+      <div class="right-column">
+        <div class="leaderboard-toggle">
+          <button id="btn-alltime" class="toggle active">All Time Fastest</button>
+          <button id="btn-average" class="toggle">Average Fastest</button>
+        </div>
+        
+        <!-- Leaderboard List for All Time Fastest -->
+        <div id="alltime-leaderboard" class="leaderboard-list">
+          <ul>
+            <li><span class="rank">1.</span><span class="name">I'll add this functionality later prob idk</span><span class="value">00:45</span></li>
+          </ul>
+        </div>
+        
+        <!-- Leaderboard List for Average Fastest (hidden by default) -->
+        <div id="average-leaderboard" class="leaderboard-list" style="display:none;">
+          <ul>
+            <li><span class="rank">1.</span><span class="name">same here lol</span><span class="value">00:50</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyATnjpXqIEIlsdr3QdP24zxEAIGXmvWh-Y",
+      authDomain: "posim-ca7f7.firebaseapp.com",
+      projectId: "posim-ca7f7",
+      storageBucket: "posim-ca7f7.appspot.com",
+      messagingSenderId: "1077006971535",
+      appId: "1:1077006971535:web:1e8b0988f067da6c31f6fa"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    // Login buttons
+    const loginButtons = [
+      document.getElementById('loginButton'), 
+      document.getElementById('loginButton2')
+    ];
+
+    // Function to handle Google Sign-In
+    function handleGoogleSignIn() {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          const userName = user.displayName;
+
+          // Check if this is a new user
+          if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+            set(ref(db, 'users/' + userName), {
+              name: userName
+            });
+          }
+
+          // Redirect to game page
+          window.location.href = 'game.html';
+        })
+        .catch((error) => {
+          console.error('Google Sign-In Error:', error);
+          alert('Login failed. Please try again.');
+        });
+    }
+
+    // Add click event to all login buttons
+    loginButtons.forEach(button => {
+      button.addEventListener('click', handleGoogleSignIn);
+    });
+
+    // Leaderboard toggle functionality (from original home.html)
+    const btnAllTime = document.getElementById('btn-alltime');
+    const btnAverage = document.getElementById('btn-average');
+    const allTimeLeaderboard = document.getElementById('alltime-leaderboard');
+    const averageLeaderboard = document.getElementById('average-leaderboard');
+    
+    btnAllTime.addEventListener('click', () => {
+      btnAllTime.classList.add('active');
+      btnAverage.classList.remove('active');
+      allTimeLeaderboard.style.display = 'block';
+      averageLeaderboard.style.display = 'none';
+    });
+    
+    btnAverage.addEventListener('click', () => {
+      btnAverage.classList.add('active');
+      btnAllTime.classList.remove('active');
+      averageLeaderboard.style.display = 'block';
+      allTimeLeaderboard.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

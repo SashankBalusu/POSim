@@ -1,10 +1,20 @@
 *{
-    font-family: "madimi one";
+    font-family: "fira code";
     padding: 0;
     margin: 0;
 }
+:root {
+    --color-bg: #0B0C10;
+    --color-primary: #66FCF1;
+    --color-secondary: #45A29E;
+    --color-card-bg: #1F2833;
+    --color-text: #C5C6C7;
+    --color-heading: #66FCF1;
+    --color-accent: #45A29E;
+    --color-toggle-active: #66FCF1;
+}
 #login-page {
-    background: #F8C8C6;
+    background: var(--color-bg);
     height: 100vh;
     width: 100vw;
 }
@@ -17,12 +27,11 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    background-color: #4ea1d3;
 }
 #game-finished {
     height: 100vh;
     width: 100vw;
-    background: #F8C8C6;
+    background: var(--color-bg);
 }
 p {
     text-align: center;
@@ -42,7 +51,13 @@ p {
     width: 10vw;
     height: 10vh;
     margin: 90vh auto;
-    background-color: #6474E5;
+    background-color: var(--color-card-bg);
+    border-radius: 40px;
+    width:67%;
+    border: none;
+    color: white;
+    font-size: 20px;
+
 }
 #start {
     display: none;
@@ -54,7 +69,10 @@ p {
     top: 0;
     bottom: 0;
     margin: auto;
-    background-color: #4ea1d3;
+    border-radius: 40px;
+    border: none;
+    background-color: var(--color-primary);
+    font-size: 20px;
 }
 #post-login {
     display: none;
@@ -69,7 +87,8 @@ p {
 #preset {
     display: grid;
     grid-area: area1;
-    background: #6474E5;
+    background: var(--color-bg);
+    color: white;
     padding-left: 1em;
     padding-top: 20px;
     overflow-x: scroll;
@@ -100,10 +119,11 @@ p {
     position: absolute;
     bottom: 0;
     right: 0;
-    background: #4ea1d3;
-    border-radius: 8px;
+    background: var(--color-primary);
+    border-radius: 10px;
     height: 10vh;
     width: 5vw;
+    
 }
 #timer{
     position: absolute;
@@ -170,11 +190,11 @@ p {
     display:block;
     margin:0 auto;
     padding: 60px 50px;
-    background:#F8C8C6;
-    border-radius:4px;
+    background:var(--color-card-bg);
+    border-radius:40px;
   }
   
   canvas{
-    background:#F8C8C6;
+    background:var(--color-card-bg);
     height: 60vh;
   }
